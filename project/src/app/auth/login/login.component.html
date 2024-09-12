@@ -1,0 +1,26 @@
+<div class="row justify-content-center m-5">
+  <div class="col-md-8">
+    <form (ngSubmit)="onLogin(f)" #f=ngForm>
+      <div class="alert alert-danger" *ngIf="invalidLogin">
+        Password and or username invalid
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control" ngModel>
+      </div>
+      <div class="form-group">
+        <label for="passwd">Password</label>
+        <input type="password" name="passwd" id="passwd" class="form-control" ngModel>
+      </div>
+      <div class="text-center mt-2">
+        <button class="btn btn_add_movie mt-1 " type="submit">Log in</button>
+      </div>
+      <div class="text-center mt-2">
+        <p>Not registered?</p>
+        <button class="btn btn_add_movie mt-1 " (click)="goTo()">Create Account</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

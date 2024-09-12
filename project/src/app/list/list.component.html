@@ -1,0 +1,48 @@
+<button class="btn_add_movie float-end me-5 mt-2 mb-2" (click)="addMovie()">Add Movie</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="list-group p">
+        <li class="list-group-item"  style="font-size: 22px">Overview of all movies</li>
+        <li class="list-group-item">
+          <input class="form-control" [(ngModel)]="filterStatus" placeholder="Search a movie title">
+        </li>
+        <li *ngFor="let movie of movies | filter:filterStatus:'title' | paginate: { itemsPerPage: 7, currentPage: p}" class="list-group-item">
+          <div class="row">
+            <div class="col col-lg-4">
+              <img class="overview-img img-thumbnail mt-1" src="{{movie.img}}">
+            </div>
+            <div class="col">
+              <div class="row">
+                {{movie.title | slice: 0:15}}
+              </div>
+              <div class="row">
+                {{movie["author"]}}
+              </div>
+              <div class="row">
+                {{movie["releaseDate"]}}
+              </div>
+            </div>
+            <div class="col" >
+              <button class="btn btn-overview float-end" routerLink="{{movie.id}}/edit"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-overview float-end" (click)="deleteMovie(movie)"><i class="bi bi-trash3-fill"></i></button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="text-center mt-5">
+  <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+

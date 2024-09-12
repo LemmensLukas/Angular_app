@@ -1,0 +1,56 @@
+.container-list{
+  margin: 5px 0;
+  padding: 10px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.movie-container{
+  display: inline-flex;
+}
+
+.movie-card{
+  border: 1px solid #b8b8bd;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  width:320px;
+  min-height: 340px;
+  margin: 10px 10px;
+  background-color: #F8F9F9;
+  text-align: start;
+}
+
+.movie-card img{
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  width:  318px;
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.movie-card h4{
+  margin-top: 5px;
+  padding-left: 15px;
+}
+
+.movie-card p{
+  padding-left: 15px;
+}
+
+.card-body{
+  padding: 5px;
+}
+
+.rating{
+  margin-right: 5px;
+}
+
+.icon-yellow{
+  color: #ffd700;
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: #c3073f;
+}

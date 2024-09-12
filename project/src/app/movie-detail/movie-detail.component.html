@@ -1,0 +1,49 @@
+<div class="container mt-2">
+  <div class="row p-3">
+    <div class="col-lg-4 col-md-12 col-sm-12 text-center mt-3">
+      <img class="img-thumbnail" src="{{movie.img ? movie.img : 'assets/img/Image_not_found.jpg'}}" style="max-height: 450px; max-width: 400px">
+    </div>
+
+    <div class="col-lg-8 col-md-12 col-sm-12 layout">
+      <i (click)="bookmark(movie)" class="bi bi-bookmark icon-color float-end" *ngIf="movie.bookmarked === false"></i>
+      <i (click)="bookmark(movie)" class="bi bi-bookmark-fill icon-color float-end" *ngIf="movie.bookmarked === true "></i>
+
+      <form [formGroup]="form"  >
+        <div class="form-group mt-4">
+          <label for="title">Title</label>
+          <input type="text" [readOnly]="!editable" id="title" formControlName="title" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" [readOnly]="!editable" id="author" formControlName="author" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea [readOnly]="!editable" style="min-height: 100px" type="text" id="description" formControlName="description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="genre">Genre</label>
+          <input type="text" id="genre" [readOnly]="!editable" formControlName="genre" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label for="releaseDate">Release date</label>
+          <input type="date"class="form-control" [readOnly]="!editable" id="releaseDate" formControlName="releaseDate" placeholder="Enter Release date">
+        </div>
+
+        <div class="form-group">
+          <label for="rating">Rating</label>
+          <input type="number" class="form-control" [readOnly]="!editable" min="0" max="5" id="rating" formControlName="rating" placeholder="Enter Rating">
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<router-outlet></router-outlet>

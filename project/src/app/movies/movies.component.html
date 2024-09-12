@@ -1,0 +1,67 @@
+<div class="p-0 background-search">
+  <app-searchbar (searchTextChanged)="search($event)" class="search-div"></app-searchbar>
+</div>
+
+<div class="container-fluid mt-3 top">
+  <p class="number_items" *ngIf="movies.length != 0 && !showBookmarked">Number of movies: {{movies.length}}</p>
+    <button *ngIf="!showBookmarked" class="btn_add_movie" (click)="toggle()">Show Bookmarks</button>
+
+  <p class="number_items" *ngIf="movies.length != 0 && showBookmarked">Number of movies: {{bookmarked.length}}</p>
+  <button *ngIf="showBookmarked" class="btn_add_movie" (click)="toggle()">Show All Movies</button>
+</div>
+
+<div class="container-list">
+  <div *ngIf="showBookmarked">
+    <p *ngIf="bookmarked.length == 0">No Movies found!</p>
+    <ng-container *ngFor="let movie of bookmarked | filter: filterStatus: 'title' | paginate: { itemsPerPage: 12, currentPage: p}">
+      <div class="movie-container">
+        <div class="movie-card">
+          <img src="{{movie.img ? movie.img : 'assets/img/Image_not_found.jpg'}}" class="card-img-top" routerLink="{{movie.id}}" routerLinkActive="active" alt="">
+          <div class="card-body">
+            <i (click)="bookmark(movie)" class="bi bi-bookmark icon-color float-end" *ngIf="!movie['bookmarked']"></i>
+            <i (click)="bookmark(movie)" class="bi bi-bookmark-fill icon-color float-end" *ngIf="movie['bookmarked']"></i>
+            <h4 class="card-title fw-bold">Title: {{movie.title | slice: 0:15}}</h4>
+            <p>Author: {{movie["author"]}}</p>
+            <p>Release date: {{movie["releaseDate"]}}</p>
+            <p class="float-start rating">Rating: </p>
+            <ul *ngFor="let x of (movie['rating'] | toArray)">
+              <li class="list-inline float-start">
+                <i class="bi bi-star-fill icon-yellow"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div *ngIf="!showBookmarked">
+    <p *ngIf="movies.length == 0">No Movies found!</p>
+    <ng-container *ngFor="let movie of movies |filter: filterStatus: 'title' | paginate: { itemsPerPage: 12, currentPage: p}">
+      <div class="movie-container">
+        <div class="movie-card">
+          <img src="{{movie.img ? movie.img : 'assets/img/Image_not_found.jpg'}}" class="card-img-top" routerLink="{{movie.id}}" routerLinkActive="active" alt="">
+          <div class="card-body">
+            <i (click)="bookmark(movie)" class="bi bi-bookmark icon-color float-end" *ngIf="!movie['bookmarked']"></i>
+            <i (click)="bookmark(movie)" class="bi bi-bookmark-fill icon-color float-end" *ngIf="movie['bookmarked']"></i>
+            <h4 class="card-title fw-bold">Title: {{movie.title | slice: 0:15}}</h4>
+            <p>Author: {{movie["author"]}}</p>
+            <p>Release date: {{movie["releaseDate"]}}</p>
+            <p class="float-start rating">Rating: </p>
+            <ul *ngFor="let x of (movie['rating'] | toArray)">
+              <li class="list-inline float-start">
+                <i class="bi bi-star-fill icon-yellow"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="text-center mt-2">
+  <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+</div>
+<router-outlet></router-outlet>
+
+
+

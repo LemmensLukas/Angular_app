@@ -1,0 +1,60 @@
+<div class="container mt-4">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" id="title" formControlName="title" class="form-control"/>
+      <span class="help-block" *ngIf="!title.valid && title.touched">
+        Title is mandatory.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input type="text" id="author" formControlName="author" class="form-control"/>
+      <span class="help-block" *ngIf="!author.valid && author.touched">
+        Author is mandatory.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea style="min-height: 100px" type="text" id="description" formControlName="description" class="form-control"></textarea>
+      <span class="help-block" *ngIf="!description.valid && description.touched">
+        Description is mandatory.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <input type="text" id="genre" formControlName="genre" class="form-control"/>
+      <span class="help-block" *ngIf="!genre.valid && genre.touched">
+        Genre is mandatory.
+      </span>
+
+    </div>
+
+    <div class="form-group">
+      <label for="releaseDate">Release date *</label>
+      <input type="date"class="form-control" id="releaseDate" formControlName="releaseDate" placeholder="Enter Release date">
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input type="number" class="form-control" min="0" max="5" id="rating" formControlName="rating" placeholder="Enter Rating">
+      <span class="help-block" *ngIf="!rating.valid && rating.touched">
+        Rating is mandatory
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="img">Image *</label>
+      <input type="file" id="img" (change)="selectImg($event)" class="form-control">
+    </div>
+
+    <button class="btn btn_add_movie m-2 float-end" type="button" (click)="cancel()">Cancel</button>
+    <button class="btn btn_add_movie m-2 float-end" type="submit" [disabled]="!form.valid">Submit</button>
+
+  </form>
+
+</div>

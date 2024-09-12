@@ -1,0 +1,30 @@
+<div class="row justify-content-center m-5">
+  <div class="col-8">
+    <form [formGroup]="form" (ngSubmit)="onSignup()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control"formControlName="email">
+        <span class="error-message" *ngIf="!email.valid && email.touched">
+          <span class="error-message" *ngIf="email.errors?.['emailTaken']">
+            Email taken,
+          </span>
+          Enter a valid email
+        </span>
+
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" minlength="6" class="form-control" formControlName="password">
+        <span class="error-message" *ngIf="!password.valid && password.touched">
+          <span class="error-message" *ngIf="password.errors?.['invalidFormat']">
+            Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 6-16 characters!
+          </span>
+          Password is required
+        </span>
+      </div>
+      <div class="text-center mt-2">
+        <button class="btn btn_add_movie mt-1" [disabled]="!form.valid" type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
